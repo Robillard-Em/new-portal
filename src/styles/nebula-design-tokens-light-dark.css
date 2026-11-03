@@ -1,0 +1,524 @@
+/*
+ * Nebula Design System tokens using CSS color-scheme + light-dark().
+ *
+ * Source: local common-react checkout, if available/lib/styles and lib/theme/palette
+ * (Figma Nebula variables may be richer — treat missing names here as sync gaps.)
+ *
+ * Taxonomy (CSS custom properties):
+ *   Reference  — --nebula-color-palette-*, raw scales (define here; avoid in product CSS)
+ *   System     — --nebula-color-background|text|border|action|status-*, spacing, type
+ *   Component  — --nebula-component-*
+ *   Prototype  — --prototype-* (template chrome only)
+ *
+ * Design System: see agents/skills/nebula-design-system/SKILL.md (taxonomy + assessor).
+ * Canonical copy for scaffolds: this file under agents/prototype-template/.
+ *
+ * Usage:
+ *   <html data-nebula-variant="application">
+ *
+ * Then control mode with normal CSS:
+ *   :root { color-scheme: light dark; }           System-driven
+ *   :root { color-scheme: dark; }                 Force dark
+ *   :root { color-scheme: light; }                Force light
+ *
+ * Variant controls the Global/Application axis:
+ *   data-nebula-variant="global"
+ *   data-nebula-variant="application"
+ */
+
+:root {
+  color-scheme: light dark;
+  --nebula-theme-variant: application;
+
+  /* Font */
+
+  --nebula-font-family: "Montserrat", system-ui, sans-serif;
+  --nebula-font-family--new: "InterUI", system-ui, sans-serif;
+  --nebula-font-family-montserrat: var(--nebula-font-family); /* Legacy for backwards compatibility, deprecate */
+
+
+  /* zindex */
+  --prototype-zindex-base: 0;
+  --prototype-zindex-sidebar: 100;
+  --prototype-zindex-toast: 200;
+  --prototype-zindex-popup: 300;
+  --prototype-zindex-overlay: 400;
+
+  --prototype-app-header-max-block-size: 4.25rem; /* 68px — production AppBar */
+  --prototype-density-scale: 1;
+  --prototype-icon-size-small: 1rem;
+  --prototype-icon-size-dense: 1.25rem;
+  --prototype-icon-size-default: 1.5rem;
+  --prototype-icon-size-header: 1.875rem; /* 30px — production app-switcher / header glyph */
+  --prototype-icon-size-large: 2.25rem;
+  --prototype-icon-size-extra-large: 3rem;
+  --prototype-icon-button-size: 2.5rem; /* 40px */
+  --prototype-icon-button-padding: 0.5rem; /* 8px — matches source; icon centers via flex */
+  --prototype-button-size-medium-block: 2.5rem; /* 40px — Nebula medium Button */
+  --prototype-button-padding-block-medium: 0.5rem; /* 8px — Figma Button Content inset */
+  --prototype-button-padding-inline-medium: 1rem; /* 16px — Figma Button Content inset */
+  --prototype-button-padding-block-small: 0.25rem; /* 4px */
+  --prototype-button-padding-inline-small: 0.75rem; /* 12px */
+  --prototype-button-size-small-block: 2rem; /* 32px */
+  --prototype-button-border-width: 0.0625rem;
+  --prototype-button-font-size: 1rem; /* 16px Body/Large */
+  --prototype-button-line-height: 1.5rem; /* 24px Body/Large */
+  --prototype-button-letter-spacing: 0.016rem; /* 0.25px */
+  --prototype-button-gap: 0.25rem; /* 4px icon/label gap */
+  --prototype-checkbox-size: 1.125rem; /* 18px — Nebula default Checkbox */
+  --prototype-checkbox-size-small: 0.9375rem; /* 15px — Nebula small Checkbox */
+  --prototype-checkbox-border-width: 0.125rem; /* 2px unchecked stroke */
+  --prototype-checkbox-radius: 0.25rem; /* 4px */
+  --prototype-checkbox-icon-size: 0.75rem; /* 12px mark inside 18px box */
+  --prototype-checkbox-icon-size-small: 0.625rem; /* 10px mark inside 15px box */
+  --prototype-page-max: 96rem;
+  --prototype-app-switcher-inline-size: 26.875rem; /* 430px */
+  --prototype-focus-shadow: 0 0 0 var(--nebula-spacing-1)
+    color-mix(in srgb, var(--nebula-color-border-focus) 24%, transparent);
+  --prototype-shadow-raised: 0 var(--nebula-spacing-1) var(--nebula-spacing-2)
+    color-mix(in srgb, var(--nebula-color-common-black) 35%, transparent);
+  --prototype-shadow-fab: 0 var(--nebula-spacing-1) var(--nebula-spacing-3)
+    color-mix(in srgb, var(--nebula-color-common-black) 25%, transparent);
+
+  /* Spacing: 4px base grid */
+  --nebula-spacing-base: 4px;
+  --nebula-spacing-0-5: 2px;
+  --nebula-spacing-1: 4px;
+  --nebula-spacing-1-5: 6px;
+  --nebula-spacing-2: 8px;
+  --nebula-spacing-2-5: 10px;
+  --nebula-spacing-3: 12px;
+  --nebula-spacing-4: 16px;
+  --nebula-spacing-5: 20px;
+  --nebula-spacing-6: 24px;
+  --nebula-spacing-8: 32px;
+
+  /* Shared palettes */
+  --nebula-color-palette-white-0: #ffffff;
+  --nebula-color-palette-black-0: #000000;
+  --nebula-color-common-white: var(--nebula-color-palette-white-0);
+  --nebula-color-common-black: var(--nebula-color-palette-black-0);
+
+  --nebula-color-palette-neutral-0: #f5f6f8;
+  --nebula-color-palette-neutral-100: #eaebed;
+  --nebula-color-palette-neutral-200: #dcdddf;
+  --nebula-color-palette-neutral-300: #c8c9cb;
+  --nebula-color-palette-neutral-400: #a2a3a5;
+  --nebula-color-palette-neutral-500: #808283;
+  --nebula-color-palette-neutral-600: #5a5b5c;
+  --nebula-color-palette-neutral-700: #47494a;
+  --nebula-color-palette-neutral-800: #2a2b2c;
+  --nebula-color-palette-neutral-900: #07090b;
+
+  --nebula-color-grey-50: var(--nebula-color-palette-neutral-0);
+  --nebula-color-grey-100: var(--nebula-color-palette-neutral-100);
+  --nebula-color-grey-200: var(--nebula-color-palette-neutral-200);
+  --nebula-color-grey-300: var(--nebula-color-palette-neutral-300);
+  --nebula-color-grey-400: var(--nebula-color-palette-neutral-400);
+  --nebula-color-grey-500: var(--nebula-color-palette-neutral-500);
+  --nebula-color-grey-600: var(--nebula-color-palette-neutral-600);
+  --nebula-color-grey-700: var(--nebula-color-palette-neutral-700);
+  --nebula-color-grey-800: var(--nebula-color-palette-neutral-800);
+  --nebula-color-grey-900: var(--nebula-color-palette-neutral-900);
+
+  --nebula-color-palette-red-0: #ffe7e6;
+  --nebula-color-palette-red-100: #ffc7b8;
+  --nebula-color-palette-red-200: #ffa28a;
+  --nebula-color-palette-red-300: #ff795b;
+  --nebula-color-palette-red-400: #ff5436;
+  --nebula-color-palette-red-500: #ff200c;
+  --nebula-color-palette-red-600: #ff1507;
+  --nebula-color-palette-red-700: #ff0000;
+  --nebula-color-palette-red-800: #f10000;
+  --nebula-color-palette-red-900: #da0000;
+
+  --nebula-color-palette-orange-0: #fff2df;
+  --nebula-color-palette-orange-100: #ffddb0;
+  --nebula-color-palette-orange-200: #ffc77d;
+  --nebula-color-palette-orange-300: #ffaf49;
+  --nebula-color-palette-orange-400: #ff9e22;
+  --nebula-color-palette-orange-500: #ff8d00;
+  --nebula-color-palette-orange-600: #fa8100;
+  --nebula-color-palette-orange-700: #f47100;
+  --nebula-color-palette-orange-800: #ee6002;
+  --nebula-color-palette-orange-900: #e54304;
+
+  --nebula-color-palette-yellow-0: #fffee6;
+  --nebula-color-palette-yellow-100: #fffac2;
+  --nebula-color-palette-yellow-200: #fff699;
+  --nebula-color-palette-yellow-300: #fff16e;
+  --nebula-color-palette-yellow-400: #fdec4a;
+  --nebula-color-palette-yellow-500: #fbe71e;
+  --nebula-color-palette-yellow-600: #ffdc26;
+  --nebula-color-palette-yellow-700: #ffc31d;
+  --nebula-color-palette-yellow-800: #ffab13;
+  --nebula-color-palette-yellow-900: #ff8000;
+
+  --nebula-color-palette-green-0: #e2fde5;
+  --nebula-color-palette-green-100: #b8f8bf;
+  --nebula-color-palette-green-200: #80f394;
+  --nebula-color-palette-green-300: #02ee60;
+  --nebula-color-palette-green-400: #00e72d;
+  --nebula-color-palette-green-500: #00de00;
+  --nebula-color-palette-green-600: #00cd00;
+  --nebula-color-palette-green-700: #00b900;
+  --nebula-color-palette-green-800: #00a700;
+  --nebula-color-palette-green-900: #008500;
+
+  --nebula-color-palette-teal-0: #d9fffe;
+  --nebula-color-palette-teal-100: #9afffd;
+  --nebula-color-palette-teal-200: #00ffff;
+  --nebula-color-palette-teal-300: #00fbff;
+  --nebula-color-palette-teal-400: #00f5fe;
+  --nebula-color-palette-teal-500: #00f0ff;
+  --nebula-color-palette-teal-600: #00deeb;
+  --nebula-color-palette-teal-700: #00c7ce;
+  --nebula-color-palette-teal-800: #00b1b4;
+  --nebula-color-palette-teal-900: #008c82;
+
+  --nebula-color-palette-blue-0: #e0f7fd;
+  --nebula-color-palette-blue-100: #afe9f9;
+  --nebula-color-palette-blue-200: #77daf7;
+  --nebula-color-palette-blue-300: #32cbf5;
+  --nebula-color-palette-blue-400: #00bff7;
+  --nebula-color-palette-blue-500: #00b4f7;
+  --nebula-color-palette-blue-600: #00a5e9;
+  --nebula-color-palette-blue-700: #0092d6;
+  --nebula-color-palette-blue-800: #0081c3;
+  --nebula-color-palette-blue-900: #0061a3;
+
+  --nebula-color-palette-purple-0: #f7e7ff;
+  --nebula-color-palette-purple-100: #e9c2fe;
+  --nebula-color-palette-purple-200: #db99ff;
+  --nebula-color-palette-purple-300: #cc6dff;
+  --nebula-color-palette-purple-400: #bf48fe;
+  --nebula-color-palette-purple-500: #b026f5;
+  --nebula-color-palette-purple-600: #9d26ee;
+  --nebula-color-palette-purple-700: #8324e6;
+  --nebula-color-palette-purple-800: #6c24df;
+  --nebula-color-palette-purple-900: #3323d1;
+
+  --nebula-color-palette-pink-0: #ffe3f9;
+  --nebula-color-palette-pink-100: #fcb9f1;
+  --nebula-color-palette-pink-200: #f986e9;
+  --nebula-color-palette-pink-300: #f542e0;
+  --nebula-color-palette-pink-400: #f000d9;
+  --nebula-color-palette-pink-500: #e300cc;
+  --nebula-color-palette-pink-600: #d200c8;
+  --nebula-color-palette-pink-700: #bc00c4;
+  --nebula-color-palette-pink-800: #a800bf;
+  --nebula-color-palette-pink-900: #8300b6;
+
+  /* Shared data visualization colors */
+  --nebula-color-data-visualization-red-light: var(--nebula-color-palette-red-300);
+  --nebula-color-data-visualization-red-medium: var(--nebula-color-palette-red-600);
+  --nebula-color-data-visualization-red-dark: var(--nebula-color-palette-red-800);
+  --nebula-color-data-visualization-orange-light: var(--nebula-color-palette-orange-300);
+  --nebula-color-data-visualization-orange-medium: var(--nebula-color-palette-orange-600);
+  --nebula-color-data-visualization-orange-dark: var(--nebula-color-palette-orange-800);
+  --nebula-color-data-visualization-yellow-light: var(--nebula-color-palette-yellow-300);
+  --nebula-color-data-visualization-yellow-medium: var(--nebula-color-palette-yellow-600);
+  --nebula-color-data-visualization-yellow-dark: var(--nebula-color-palette-yellow-800);
+  --nebula-color-data-visualization-green-light: var(--nebula-color-palette-green-200);
+  --nebula-color-data-visualization-green-medium: var(--nebula-color-palette-green-600);
+  --nebula-color-data-visualization-green-dark: var(--nebula-color-palette-green-800);
+  --nebula-color-data-visualization-teal-light: var(--nebula-color-palette-teal-100);
+  --nebula-color-data-visualization-teal-medium: var(--nebula-color-palette-teal-600);
+  --nebula-color-data-visualization-teal-dark: var(--nebula-color-palette-teal-800);
+  --nebula-color-data-visualization-blue-light: var(--nebula-color-palette-blue-200);
+  --nebula-color-data-visualization-blue-medium: var(--nebula-color-palette-blue-600);
+  --nebula-color-data-visualization-blue-dark: var(--nebula-color-palette-blue-800);
+  --nebula-color-data-visualization-purple-light: var(--nebula-color-palette-purple-200);
+  --nebula-color-data-visualization-purple-medium: var(--nebula-color-palette-purple-300);
+  --nebula-color-data-visualization-purple-dark: var(--nebula-color-palette-purple-500);
+  --nebula-color-data-visualization-pink-light: var(--nebula-color-palette-pink-200);
+  --nebula-color-data-visualization-pink-medium: var(--nebula-color-palette-pink-300);
+  --nebula-color-data-visualization-pink-dark: var(--nebula-color-palette-pink-600);
+
+  /* Shared status colors */
+  --nebula-color-status-neutral-light: var(--nebula-color-palette-neutral-300);
+  --nebula-color-status-neutral-medium: var(--nebula-color-palette-neutral-400);
+  --nebula-color-status-neutral-dark: var(--nebula-color-palette-neutral-600);
+  --nebula-color-status-info-light: var(--nebula-color-palette-blue-200);
+  --nebula-color-status-info-medium: var(--nebula-color-palette-blue-600);
+  --nebula-color-status-info-dark: var(--nebula-color-palette-blue-800);
+  --nebula-color-status-success-light: var(--nebula-color-palette-green-200);
+  --nebula-color-status-success-medium: var(--nebula-color-palette-green-600);
+  --nebula-color-status-success-dark: var(--nebula-color-palette-green-800);
+  --nebula-color-status-warning-light: var(--nebula-color-palette-yellow-300);
+  --nebula-color-status-warning-medium: var(--nebula-color-palette-yellow-600);
+  --nebula-color-status-warning-dark: var(--nebula-color-palette-yellow-800);
+  --nebula-color-status-serious-light: var(--nebula-color-palette-orange-300);
+  --nebula-color-status-serious-medium: var(--nebula-color-palette-orange-600);
+  --nebula-color-status-serious-dark: var(--nebula-color-palette-orange-800);
+  --nebula-color-status-danger-light: var(--nebula-color-palette-red-300);
+  --nebula-color-status-danger-medium: var(--nebula-color-palette-red-600);
+  --nebula-color-status-danger-dark: var(--nebula-color-palette-red-800);
+
+  /* Semantic colors: light first, dark second */
+  --nebula-color-background-base: light-dark(var(--nebula-color-palette-neutral-200), var(--nebula-color-palette-neutral-900));
+  --nebula-color-background-default: light-dark(var(--nebula-color-palette-neutral-0), var(--nebula-color-palette-neutral-800));
+  --nebula-color-background-paper: var(--nebula-color-background-default);
+  --nebula-color-table-header: var(--nebula-color-palette-neutral-700);
+
+  --nebula-color-text-primary: light-dark(var(--nebula-color-palette-neutral-800), var(--nebula-color-palette-neutral-100));
+  --nebula-color-text-secondary: light-dark(var(--nebula-color-palette-neutral-600), var(--nebula-color-palette-neutral-400));
+  --nebula-color-text-placeholder: var(--nebula-color-palette-neutral-300);
+  --nebula-color-text-label: light-dark(var(--nebula-color-palette-neutral-600), var(--nebula-color-palette-neutral-300));
+  --nebula-color-text-reverse: light-dark(var(--nebula-color-palette-neutral-0), var(--nebula-color-palette-neutral-900));
+  --nebula-color-text-disabled: light-dark(var(--nebula-color-palette-neutral-400), var(--nebula-color-palette-neutral-600));
+  --nebula-color-text-link: light-dark(var(--nebula-color-palette-blue-900), var(--nebula-color-palette-blue-300));
+  --nebula-color-text-error: light-dark(#cb081a, var(--nebula-color-palette-red-400));
+
+  --nebula-color-border-default: light-dark(var(--nebula-color-palette-neutral-300), var(--nebula-color-palette-neutral-700));
+  --nebula-color-border-secondary: light-dark(var(--nebula-color-palette-neutral-400), var(--nebula-color-palette-neutral-500));
+  --nebula-color-border-disabled: light-dark(var(--nebula-color-palette-neutral-400), var(--nebula-color-palette-neutral-600));
+  --nebula-color-border-error: light-dark(#cb081a, var(--nebula-color-palette-red-400));
+  --nebula-color-border-focus: light-dark(var(--nebula-color-palette-blue-800), var(--nebula-color-palette-blue-300));
+  --nebula-color-divider: var(--nebula-color-border-default);
+
+  --nebula-color-action-light: var(--nebula-color-palette-neutral-300);
+  --nebula-color-action-medium: var(--nebula-color-palette-neutral-400);
+  --nebula-color-action-dark: var(--nebula-color-palette-neutral-500);
+  --nebula-color-action-extra-dark: var(--nebula-color-palette-neutral-600);
+  --nebula-color-action-global-default: light-dark(var(--nebula-color-palette-neutral-800), var(--nebula-color-palette-neutral-100));
+  --nebula-color-action-global-hover: light-dark(var(--nebula-color-palette-black-0), var(--nebula-color-palette-white-0));
+  --nebula-color-action-global-tinted-hover: light-dark(rgba(42, 43, 44, 0.08), rgba(234, 235, 237, 0.08));
+  --nebula-color-action-global-disabled: light-dark(var(--nebula-color-palette-neutral-400), var(--nebula-color-palette-neutral-600));
+  --nebula-color-action-application-default: light-dark(#006faf, var(--nebula-color-palette-blue-500));
+  --nebula-color-action-application-hover: light-dark(#00508d, var(--nebula-color-palette-blue-300));
+  --nebula-color-action-application-tinted-hover: light-dark(rgba(0, 80, 141, 0.12), rgba(50, 203, 245, 0.12));
+  --nebula-color-action-application-disabled: light-dark(#93c0db, #19627d);
+
+  --nebula-color-error-main: var(--nebula-color-status-danger-medium);
+  --nebula-color-error-light: var(--nebula-color-data-visualization-red-light);
+  --nebula-color-error-dark: var(--nebula-color-data-visualization-red-dark);
+  --nebula-color-error-contrast-text: var(--nebula-color-text-reverse);
+  --nebula-color-warning-main: var(--nebula-color-status-warning-medium);
+  --nebula-color-warning-light: var(--nebula-color-data-visualization-yellow-light);
+  --nebula-color-warning-dark: var(--nebula-color-data-visualization-yellow-dark);
+  --nebula-color-warning-contrast-text: var(--nebula-color-text-reverse);
+  --nebula-color-info-main: var(--nebula-color-data-visualization-blue-medium);
+  --nebula-color-info-light: var(--nebula-color-data-visualization-blue-light);
+  --nebula-color-info-dark: var(--nebula-color-data-visualization-blue-dark);
+  --nebula-color-info-contrast-text: var(--nebula-color-text-reverse);
+  --nebula-color-success-main: var(--nebula-color-status-success-medium);
+  --nebula-color-success-light: var(--nebula-color-data-visualization-green-light);
+  --nebula-color-success-dark: var(--nebula-color-data-visualization-green-dark);
+  --nebula-color-success-contrast-text: var(--nebula-color-text-reverse);
+
+  /* Typography */
+  --nebula-typography-headline-large-font-family: var(--nebula-font-family-montserrat);
+  --nebula-typography-headline-large-font-weight: 500;
+  --nebula-typography-headline-large-font-size: 2rem;
+  --nebula-typography-headline-large-line-height: 2.5rem;
+  --nebula-typography-headline-large-letter-spacing: 0rem;
+  --nebula-typography-headline-large-bold-font-family: var(--nebula-font-family-montserrat);
+  --nebula-typography-headline-large-bold-font-weight: 700;
+  --nebula-typography-headline-large-bold-font-size: 2rem;
+  --nebula-typography-headline-large-bold-line-height: 2.5rem;
+  --nebula-typography-headline-large-bold-letter-spacing: 0rem;
+  --nebula-typography-headline-medium-font-family: var(--nebula-font-family-montserrat);
+  --nebula-typography-headline-medium-font-weight: 600;
+  --nebula-typography-headline-medium-font-size: 1.75rem;
+  --nebula-typography-headline-medium-line-height: 2.25rem;
+  --nebula-typography-headline-medium-letter-spacing: 0rem;
+  --nebula-typography-headline-medium-bold-font-family: var(--nebula-font-family-montserrat);
+  --nebula-typography-headline-medium-bold-font-weight: 700;
+  --nebula-typography-headline-medium-bold-font-size: 1.75rem;
+  --nebula-typography-headline-medium-bold-line-height: 2.25rem;
+  --nebula-typography-headline-medium-bold-letter-spacing: 0rem;
+  --nebula-typography-headline-small-font-family: var(--nebula-font-family-montserrat);
+  --nebula-typography-headline-small-font-weight: 600;
+  --nebula-typography-headline-small-font-size: 1.5rem;
+  --nebula-typography-headline-small-line-height: 2rem;
+  --nebula-typography-headline-small-letter-spacing: 0rem;
+  --nebula-typography-headline-small-bold-font-family: var(--nebula-font-family-montserrat);
+  --nebula-typography-headline-small-bold-font-weight: 700;
+  --nebula-typography-headline-small-bold-font-size: 1.5rem;
+  --nebula-typography-headline-small-bold-line-height: 2rem;
+  --nebula-typography-headline-small-bold-letter-spacing: 0rem;
+  --nebula-typography-headline-extra-small-font-family: var(--nebula-font-family-montserrat);
+  --nebula-typography-headline-extra-small-font-weight: 600;
+  --nebula-typography-headline-extra-small-font-size: 1.25rem;
+  --nebula-typography-headline-extra-small-line-height: 1.75rem;
+  --nebula-typography-headline-extra-small-letter-spacing: 0rem;
+  --nebula-typography-headline-extra-small-bold-font-family: var(--nebula-font-family-montserrat);
+  --nebula-typography-headline-extra-small-bold-font-weight: 700;
+  --nebula-typography-headline-extra-small-bold-font-size: 1.25rem;
+  --nebula-typography-headline-extra-small-bold-line-height: 1.75rem;
+  --nebula-typography-headline-extra-small-bold-letter-spacing: 0rem;
+  --nebula-typography-page-title-font-family: var(--nebula-font-family-montserrat);
+  --nebula-typography-page-title-font-weight: 700;
+  --nebula-typography-page-title-font-size: 1.5rem;
+  --nebula-typography-page-title-line-height: 2rem;
+  --nebula-typography-page-title-letter-spacing: 0.016rem;
+  --nebula-typography-body-large-font-family: var(--nebula-font-family-montserrat);
+  --nebula-typography-body-large-font-weight: 500;
+  --nebula-typography-body-large-font-size: 1rem;
+  --nebula-typography-body-large-line-height: 1.5rem;
+  --nebula-typography-body-large-letter-spacing: 0.016rem;
+  --nebula-typography-body-large-bold-font-family: var(--nebula-font-family-montserrat);
+  --nebula-typography-body-large-bold-font-weight: 700;
+  --nebula-typography-body-large-bold-font-size: 1rem;
+  --nebula-typography-body-large-bold-line-height: 1.5rem;
+  --nebula-typography-body-large-bold-letter-spacing: 0.016rem;
+  --nebula-typography-body-medium-font-family: var(--nebula-font-family-montserrat);
+  --nebula-typography-body-medium-font-weight: 500;
+  --nebula-typography-body-medium-font-size: 0.875rem;
+  --nebula-typography-body-medium-line-height: 1.25rem;
+  --nebula-typography-body-medium-letter-spacing: 0.016rem;
+  --nebula-typography-body-medium-bold-font-family: var(--nebula-font-family-montserrat);
+  --nebula-typography-body-medium-bold-font-weight: 700;
+  --nebula-typography-body-medium-bold-font-size: 0.875rem;
+  --nebula-typography-body-medium-bold-line-height: 1.25rem;
+  --nebula-typography-body-medium-bold-letter-spacing: 0.016rem;
+  --nebula-typography-body-small-font-family: var(--nebula-font-family-montserrat);
+  --nebula-typography-body-small-font-weight: 500;
+  --nebula-typography-body-small-font-size: 0.75rem;
+  --nebula-typography-body-small-line-height: 1rem;
+  --nebula-typography-body-small-letter-spacing: 0.016rem;
+  --nebula-typography-body-small-bold-font-family: var(--nebula-font-family-montserrat);
+  --nebula-typography-body-small-bold-font-weight: 700;
+  --nebula-typography-body-small-bold-font-size: 0.75rem;
+  --nebula-typography-body-small-bold-line-height: 1rem;
+  --nebula-typography-body-small-bold-letter-spacing: 0.016rem;
+
+  /* Component mode tokens */
+  --nebula-component-pane-application-background-tinted: light-dark(rgba(245, 246, 248, 0.9), rgba(42, 43, 44, 0.65));
+  --nebula-component-pane-global-border: none;
+  --nebula-component-pane-application-border: 1px solid var(--nebula-color-border-default);
+  --nebula-component-tab-default: light-dark(var(--nebula-color-palette-neutral-600), var(--nebula-color-palette-neutral-400));
+  --nebula-component-tab-hover: light-dark(var(--nebula-color-palette-neutral-500), var(--nebula-color-palette-neutral-300));
+  --nebula-component-switch-off: var(--nebula-color-palette-neutral-500);
+  --nebula-component-switch-off-hover: var(--nebula-color-palette-neutral-400);
+  --nebula-component-tooltip-background: light-dark(var(--nebula-color-palette-neutral-300), var(--nebula-color-palette-neutral-600));
+
+  --nebula-component-satellite-neutral-icon: light-dark(var(--nebula-color-palette-neutral-800), var(--nebula-color-palette-neutral-100));
+  --nebula-component-satellite-blue-icon: var(--nebula-color-action-application-default);
+  --nebula-component-satellite-blue-cell-fill: light-dark(rgba(119, 218, 247, 0.6), rgba(0, 129, 195, 0.6));
+  --nebula-component-satellite-blue-cell-border: var(--nebula-color-palette-blue-500);
+  --nebula-component-satellite-red-icon: light-dark(#cb081a, var(--nebula-color-palette-red-400));
+  --nebula-component-satellite-red-cell-fill: light-dark(rgba(255, 162, 138, 0.6), rgba(241, 0, 0, 0.6));
+  --nebula-component-satellite-red-cell-border: var(--nebula-color-palette-red-400);
+  --nebula-component-satellite-white-icon: var(--nebula-color-palette-neutral-400);
+  --nebula-component-satellite-white-cell-fill: light-dark(rgba(200, 201, 203, 0.6), rgba(90, 91, 92, 0.6));
+  --nebula-component-satellite-white-cell-border: light-dark(var(--nebula-color-palette-neutral-500), var(--nebula-color-palette-neutral-400));
+
+  --nebula-component-chip-global-default: var(--nebula-color-action-global-default);
+  --nebula-component-chip-global-hover: var(--nebula-color-action-global-hover);
+  --nebula-component-chip-global-tinted-hover: var(--nebula-color-action-global-tinted-hover);
+  --nebula-component-chip-application-default: var(--nebula-color-palette-blue-500);
+  --nebula-component-chip-application-hover: light-dark(var(--nebula-color-palette-blue-600), var(--nebula-color-palette-blue-300));
+  --nebula-component-chip-application-tinted-hover: var(--nebula-color-action-application-tinted-hover);
+
+  --nebula-component-slider-size-default-slider-height: 20px;
+  --nebula-component-slider-size-default-thumb-size: 20px;
+  --nebula-component-slider-size-default-track-height: 6px;
+  --nebula-component-slider-size-default-rail-height: 4px;
+  --nebula-component-slider-size-default-hover-ring-size: 8px;
+  --nebula-component-slider-size-default-active-ring-size: 12px;
+  --nebula-component-slider-size-default-mark-size: 2px;
+  --nebula-component-slider-size-small-slider-height: 12px;
+  --nebula-component-slider-size-small-thumb-size: 12px;
+  --nebula-component-slider-size-small-track-height: 4px;
+  --nebula-component-slider-size-small-rail-height: 2px;
+  --nebula-component-slider-size-small-hover-ring-size: 6px;
+  --nebula-component-slider-size-small-active-ring-size: 8px;
+  --nebula-component-slider-size-small-mark-size: 2px;
+  --nebula-component-slider-border-radius: 4px;
+  --nebula-component-slider-thumb-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  --nebula-component-slider-hover-opacity: 0.16;
+  --nebula-component-slider-disabled-opacity: 0.4;
+  --nebula-component-slider-mark-opacity: 0.8;
+  --nebula-component-slider-spacing-container-gap: var(--nebula-spacing-1);
+  --nebula-component-slider-spacing-slider-input-gap: var(--nebula-spacing-2);
+  --nebula-component-slider-spacing-slider-labels-gap: var(--nebula-spacing-0-5);
+  --nebula-component-slider-spacing-input-width: 80px;
+  --nebula-component-slider-tooltip-padding-x: var(--nebula-spacing-2);
+  --nebula-component-slider-tooltip-padding-y: var(--nebula-spacing-0-5);
+  --nebula-component-slider-tooltip-border-radius: 2px;
+  --nebula-component-slider-label-letter-spacing: 0.25px;
+  --nebula-component-slider-color-rail: light-dark(var(--nebula-color-palette-neutral-300), var(--nebula-color-palette-neutral-600));
+  --nebula-component-slider-color-mark-active: var(--nebula-color-background-default);
+  --nebula-component-slider-color-label: var(--nebula-color-text-label);
+  --nebula-component-slider-color-tooltip-bg: var(--nebula-component-tooltip-background);
+  --nebula-component-slider-color-rail-disabled: light-dark(var(--nebula-color-palette-neutral-200), var(--nebula-color-palette-neutral-700));
+  --nebula-component-slider-color-track-disabled: var(--nebula-component-slider-color-rail-disabled);
+  --nebula-component-slider-color-thumb-disabled: var(--nebula-color-border-secondary);
+  --nebula-component-slider-color-mark-disabled: var(--nebula-component-slider-color-rail-disabled);
+}
+
+:root {
+  --nebula-theme-variant: application;
+  --nebula-color-action-default: var(--nebula-color-action-application-default);
+  --nebula-color-action-hover: var(--nebula-color-action-application-hover);
+  --nebula-color-action-tinted-hover: var(--nebula-color-action-application-tinted-hover);
+  --nebula-color-action-disabled: var(--nebula-color-action-application-disabled);
+  --nebula-color-primary-main: var(--nebula-color-action-application-default);
+  --nebula-color-primary-light: var(--nebula-color-action-application-hover);
+  --nebula-color-primary-dark: var(--nebula-color-palette-blue-800);
+  --nebula-color-primary-contrast-text: var(--nebula-color-text-reverse);
+  --nebula-color-secondary-main: var(--nebula-color-action-global-default);
+  --nebula-color-secondary-light: var(--nebula-color-action-global-hover);
+  --nebula-color-secondary-dark: var(--nebula-color-action-dark);
+  --nebula-color-secondary-contrast-text: var(--nebula-color-text-reverse);
+  --nebula-component-pane-background: var(--nebula-component-pane-application-background-tinted);
+  --nebula-component-checkbox-color: var(--nebula-color-action-application-default);
+  --nebula-component-radio-button-color: var(--nebula-color-action-application-default);
+  --nebula-component-tab-color-default: light-dark(var(--nebula-color-palette-neutral-600), var(--nebula-color-palette-neutral-400));
+  --nebula-component-tab-color-hover: light-dark(var(--nebula-color-palette-neutral-700), var(--nebula-color-palette-neutral-300));
+  --nebula-component-tab-color: var(--nebula-color-action-application-default);
+  --nebula-component-tab-color-selected-hover: var(--nebula-color-action-application-hover);
+  --nebula-component-tab-disabled-opacity: 0.4;
+  --nebula-component-icon-button-outlined-default-border: var(--nebula-color-text-primary);
+  --nebula-component-slider-color-thumb-hover: light-dark(#00508d, #32cbf5);
+}
+
+[data-nebula-variant="global"],
+.nebula-variant-global {
+  --nebula-theme-variant: global;
+  --nebula-color-action-default: var(--nebula-color-action-global-default);
+  --nebula-color-action-hover: var(--nebula-color-action-global-hover);
+  --nebula-color-action-tinted-hover: var(--nebula-color-action-global-tinted-hover);
+  --nebula-color-action-disabled: var(--nebula-color-action-global-disabled);
+  --nebula-color-primary-main: var(--nebula-color-action-global-default);
+  --nebula-color-primary-light: var(--nebula-color-action-global-hover);
+  --nebula-color-primary-dark: var(--nebula-color-action-dark);
+  --nebula-color-primary-contrast-text: var(--nebula-color-text-reverse);
+  --nebula-color-secondary-main: var(--nebula-color-action-application-default);
+  --nebula-color-secondary-light: var(--nebula-color-action-application-hover);
+  --nebula-color-secondary-dark: var(--nebula-color-palette-blue-800);
+  --nebula-color-secondary-contrast-text: var(--nebula-color-text-reverse);
+  --nebula-component-pane-background: var(--nebula-color-background-default);
+  --nebula-component-checkbox-color: var(--nebula-color-action-global-default);
+  --nebula-component-radio-button-color: var(--nebula-color-action-global-default);
+  --nebula-component-tab-color: var(--nebula-color-action-global-default);
+  --nebula-component-tab-color-selected-hover: var(--nebula-color-action-global-hover);
+  --nebula-component-icon-button-outlined-default-border: var(--nebula-color-action-global-default);
+  --nebula-component-slider-color-thumb-hover: light-dark(var(--nebula-color-palette-black-0), var(--nebula-color-palette-white-0));
+}
+
+[data-nebula-variant="application"],
+.nebula-variant-application {
+  --nebula-theme-variant: application;
+  --nebula-color-action-default: var(--nebula-color-action-application-default);
+  --nebula-color-action-hover: var(--nebula-color-action-application-hover);
+  --nebula-color-action-tinted-hover: var(--nebula-color-action-application-tinted-hover);
+  --nebula-color-action-disabled: var(--nebula-color-action-application-disabled);
+  --nebula-color-primary-main: var(--nebula-color-action-application-default);
+  --nebula-color-primary-light: var(--nebula-color-action-application-hover);
+  --nebula-color-primary-dark: var(--nebula-color-palette-blue-800);
+  --nebula-color-primary-contrast-text: var(--nebula-color-text-reverse);
+  --nebula-color-secondary-main: var(--nebula-color-action-global-default);
+  --nebula-color-secondary-light: var(--nebula-color-action-global-hover);
+  --nebula-color-secondary-dark: var(--nebula-color-action-dark);
+  --nebula-color-secondary-contrast-text: var(--nebula-color-text-reverse);
+  --nebula-component-pane-background: var(--nebula-component-pane-application-background-tinted);
+  --nebula-component-checkbox-color: var(--nebula-color-action-application-default);
+  --nebula-component-radio-button-color: var(--nebula-color-action-application-default);
+  --nebula-component-tab-color: var(--nebula-color-action-application-default);
+  --nebula-component-tab-color-selected-hover: var(--nebula-color-action-application-hover);
+  --nebula-component-icon-button-outlined-default-border: var(--nebula-color-text-primary);
+  --nebula-component-slider-color-thumb-hover: light-dark(#00508d, #32cbf5);
+}

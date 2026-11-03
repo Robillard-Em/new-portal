@@ -1,0 +1,835 @@
+/* Product surfaces. Color, type, and space come from the Nebula tokens.
+   Dark is the default because styles.css sets color-scheme on :root.
+   The attribute below is more specific, so a light choice still resolves light-dark(). */
+
+html[data-color-scheme="dark"] {
+  color-scheme: dark;
+}
+
+html[data-color-scheme="light"] {
+  color-scheme: light;
+}
+
+.portal-nav {
+  position: sticky;
+  top: var(--prototype-app-header-max-block-size);
+  z-index: var(--prototype-zindex-sidebar);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nebula-spacing-1);
+  padding-block: var(--nebula-spacing-2);
+  padding-inline: var(--nebula-spacing-6);
+  background: var(--nebula-color-background-default);
+  border-bottom: 1px solid var(--nebula-color-border-default);
+}
+
+.portal-nav-link {
+  padding: var(--nebula-spacing-2) var(--nebula-spacing-3);
+  border-radius: var(--nebula-spacing-1);
+  color: var(--nebula-component-tab-color-default);
+  font-size: var(--nebula-typography-body-medium-font-size);
+  font-weight: var(--nebula-typography-body-medium-bold-font-weight);
+  line-height: var(--nebula-typography-body-medium-line-height);
+  text-decoration: none;
+}
+
+.portal-nav-link:hover {
+  color: var(--nebula-component-tab-color-hover);
+  background: var(--nebula-color-action-tinted-hover);
+}
+
+.portal-nav-link[aria-current="page"] {
+  color: var(--nebula-component-tab-color);
+  box-shadow: inset 0 calc(var(--nebula-spacing-0-5) * -1) 0 var(--nebula-component-tab-color);
+}
+
+.app-item[aria-current="page"] {
+  background: color-mix(in srgb, var(--nebula-color-palette-blue-500) 24%, transparent);
+}
+
+.settings-note {
+  margin: 0;
+  padding: var(--nebula-spacing-2) 1.0625rem var(--nebula-spacing-3);
+  color: var(--nebula-color-palette-neutral-400);
+  font-size: var(--nebula-typography-body-small-font-size);
+  line-height: var(--nebula-typography-body-small-line-height);
+}
+
+.view {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nebula-spacing-4);
+}
+
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--nebula-spacing-4);
+}
+
+.page-title {
+  margin: 0;
+  font-family: var(--nebula-typography-page-title-font-family);
+  font-size: var(--nebula-typography-page-title-font-size);
+  font-weight: var(--nebula-typography-page-title-font-weight);
+  line-height: var(--nebula-typography-page-title-line-height);
+  letter-spacing: var(--nebula-typography-page-title-letter-spacing);
+}
+
+.lede,
+.muted,
+.footnote {
+  color: var(--nebula-color-text-secondary);
+  font-size: var(--nebula-typography-body-medium-font-size);
+  line-height: var(--nebula-typography-body-medium-line-height);
+}
+
+.lede {
+  max-width: 46rem;
+  margin: var(--nebula-spacing-2) 0 0;
+}
+
+.footnote {
+  margin: 0;
+  font-size: var(--nebula-typography-body-small-font-size);
+  line-height: var(--nebula-typography-body-small-line-height);
+}
+
+.panel {
+  background: var(--nebula-color-background-default);
+  border: var(--nebula-component-pane-application-border);
+  border-radius: var(--nebula-spacing-1);
+  padding: var(--nebula-spacing-4);
+}
+
+.panel-title {
+  margin: 0 0 var(--nebula-spacing-3);
+  font-family: var(--nebula-typography-headline-extra-small-font-family);
+  font-size: var(--nebula-typography-headline-extra-small-font-size);
+  font-weight: var(--nebula-typography-headline-extra-small-font-weight);
+  line-height: var(--nebula-typography-headline-extra-small-line-height);
+}
+
+/* Workspace sits on a semantic surface. Chrome secondary buttons assume a dark bar. */
+.workspace .button-secondary,
+.workspace .button-tertiary {
+  color: var(--nebula-color-text-primary);
+  border-color: var(--nebula-color-border-secondary);
+}
+
+.workspace .button-secondary:disabled {
+  background: transparent;
+  color: var(--nebula-color-text-disabled);
+  border-color: var(--nebula-color-border-disabled);
+}
+
+.workspace .button-tertiary {
+  border-color: transparent;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nebula-spacing-4);
+}
+
+.filters--form {
+  gap: var(--nebula-spacing-4);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nebula-spacing-1);
+  min-width: 0;
+}
+
+.field span,
+.choice-set legend {
+  color: var(--nebula-color-text-label);
+  font-size: var(--nebula-typography-body-small-font-size);
+  font-weight: var(--nebula-typography-body-small-bold-font-weight);
+  line-height: var(--nebula-typography-body-small-line-height);
+  letter-spacing: var(--nebula-typography-body-small-letter-spacing);
+}
+
+.field input,
+.field select {
+  box-sizing: border-box;
+  min-block-size: var(--prototype-button-size-small-block);
+  padding: var(--nebula-spacing-2) var(--nebula-spacing-3);
+  border: 1px solid var(--nebula-color-border-default);
+  border-radius: var(--nebula-spacing-1);
+  background: var(--nebula-color-background-base);
+  color: var(--nebula-color-text-primary);
+}
+
+.field--inline {
+  min-width: 14rem;
+}
+
+.choice-set {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--nebula-spacing-2);
+}
+
+.chip-row,
+.filter-actions,
+.altitude-fields,
+.stat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nebula-spacing-2);
+  align-items: center;
+}
+
+.chip,
+.plan,
+.plan-pill {
+  border: 1px solid var(--nebula-color-border-default);
+  border-radius: var(--nebula-spacing-1);
+  background: transparent;
+  color: var(--nebula-color-text-secondary);
+  font: inherit;
+  font-size: var(--nebula-typography-body-small-font-size);
+  line-height: var(--nebula-typography-body-small-line-height);
+  padding: var(--nebula-spacing-1) var(--nebula-spacing-3);
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--nebula-component-chip-application-default);
+  color: var(--nebula-color-palette-neutral-900);
+  border-color: transparent;
+}
+
+.more-filters {
+  border: var(--nebula-component-pane-application-border);
+  border-radius: var(--nebula-spacing-1);
+  padding: var(--nebula-spacing-3);
+  background: var(--nebula-color-background-default);
+}
+
+.more-filters summary {
+  cursor: pointer;
+  color: var(--nebula-color-text-link);
+  font-size: var(--nebula-typography-body-medium-font-size);
+}
+
+.more-filters[open] summary {
+  margin-bottom: var(--nebula-spacing-3);
+}
+
+.check-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: var(--nebula-spacing-2) var(--nebula-spacing-4);
+  max-block-size: 12rem;
+  overflow: auto;
+}
+
+.check-label {
+  display: flex;
+  align-items: center;
+  gap: var(--nebula-spacing-2);
+  color: var(--nebula-color-text-primary);
+  font-size: var(--nebula-typography-body-small-font-size);
+}
+
+.field-error {
+  margin: 0;
+  color: var(--nebula-color-text-error);
+  font-size: var(--nebula-typography-body-small-font-size);
+}
+
+.result-line {
+  margin: 0;
+  color: var(--nebula-color-text-primary);
+  font-size: var(--nebula-typography-body-medium-font-size);
+}
+
+.table-scroll {
+  overflow: auto;
+  border: var(--nebula-component-pane-application-border);
+  border-radius: var(--nebula-spacing-1);
+  background: var(--nebula-color-background-default);
+}
+
+.object-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.object-table th {
+  position: sticky;
+  top: 0;
+  background: var(--nebula-color-table-header);
+  color: var(--nebula-color-palette-neutral-100);
+  text-align: start;
+  font-size: var(--nebula-typography-body-small-font-size);
+  font-weight: var(--nebula-typography-body-small-bold-font-weight);
+  letter-spacing: var(--nebula-typography-body-small-letter-spacing);
+}
+
+.object-table th,
+.object-table td {
+  padding: var(--nebula-spacing-2) var(--nebula-spacing-3);
+  vertical-align: top;
+}
+
+.object-table td {
+  border-bottom: 1px solid var(--nebula-color-divider);
+}
+
+.object-table tbody tr {
+  cursor: pointer;
+}
+
+.object-table tbody tr[data-selected="true"] {
+  background: var(--nebula-component-satellite-blue-cell-fill);
+  box-shadow: inset 0 0 0 1px var(--nebula-component-satellite-blue-cell-border);
+}
+
+.object-table tbody tr:hover {
+  background: var(--nebula-color-action-tinted-hover);
+}
+
+.object-table tbody tr[data-selected="true"]:hover {
+  background: var(--nebula-component-satellite-blue-cell-fill);
+}
+
+.table-sort {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.check-cell {
+  width: 2.5rem;
+}
+
+.table-empty {
+  color: var(--nebula-color-text-secondary);
+  padding: var(--nebula-spacing-6);
+}
+
+.name--debris {
+  color: var(--nebula-component-satellite-red-icon);
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.numeric {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.status-text {
+  text-transform: capitalize;
+}
+
+.status-text--active {
+  color: var(--nebula-color-success-main);
+}
+
+.status-text--inactive {
+  color: var(--nebula-color-warning-main);
+}
+
+.status-text--decayed {
+  color: var(--nebula-color-text-secondary);
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(16rem, 22rem) minmax(0, 1fr);
+  gap: var(--nebula-spacing-4);
+  align-items: start;
+}
+
+.stat {
+  min-width: 8rem;
+  padding: var(--nebula-spacing-3) var(--nebula-spacing-4);
+  background: var(--nebula-color-background-default);
+  border: var(--nebula-component-pane-application-border);
+  border-radius: var(--nebula-spacing-1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--nebula-spacing-1);
+}
+
+.stat-value {
+  font-size: var(--nebula-typography-headline-small-font-size);
+  font-weight: var(--nebula-typography-headline-small-font-weight);
+  line-height: var(--nebula-typography-headline-small-line-height);
+}
+
+.stat-value--text {
+  font-size: var(--nebula-typography-body-large-font-size);
+  line-height: var(--nebula-typography-body-large-line-height);
+}
+
+.stat-label {
+  color: var(--nebula-color-text-secondary);
+  font-size: var(--nebula-typography-body-small-font-size);
+}
+
+.stat--warning {
+  border-color: var(--nebula-color-status-warning-medium);
+}
+
+.stat--serious {
+  border-color: var(--nebula-color-status-serious-medium);
+}
+
+.stat--success {
+  border-color: var(--nebula-color-status-success-medium);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nebula-spacing-0-5);
+}
+
+.miss--near {
+  color: var(--nebula-color-text-error);
+}
+
+.plan[aria-pressed="true"].plan--monitor,
+.plan-pill--monitor {
+  background: var(--nebula-color-status-warning-dark);
+  color: var(--nebula-color-palette-neutral-900);
+  border-color: transparent;
+}
+
+.plan[aria-pressed="true"].plan--maneuver,
+.plan-pill--maneuver {
+  background: var(--nebula-color-status-serious-medium);
+  color: var(--nebula-color-palette-neutral-900);
+  border-color: transparent;
+}
+
+.plan[aria-pressed="true"].plan--cleared,
+.plan-pill--cleared {
+  background: var(--nebula-color-status-success-medium);
+  color: var(--nebula-color-palette-neutral-900);
+  border-color: transparent;
+}
+
+.plan-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nebula-spacing-1);
+}
+
+.plan-note {
+  margin: var(--nebula-spacing-2) 0 0;
+  max-width: 28rem;
+}
+
+.plan-pill {
+  cursor: default;
+}
+
+.view--viz {
+  min-width: 0;
+}
+
+.viz-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem);
+  gap: var(--nebula-spacing-4);
+  align-items: stretch;
+}
+
+.viz-stage {
+  position: relative;
+  min-height: 36rem;
+  height: calc(100dvh - var(--prototype-app-header-max-block-size) - 12rem);
+  background: var(--nebula-color-background-base);
+  border: var(--nebula-component-pane-application-border);
+  border-radius: var(--nebula-spacing-1);
+  overflow: hidden;
+}
+
+.viz-stage canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.viz-toolbar {
+  position: absolute;
+  inset-inline: var(--nebula-spacing-3);
+  inset-block-end: var(--nebula-spacing-3);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nebula-spacing-2);
+  pointer-events: none;
+}
+
+.viz-toolbar > * {
+  pointer-events: auto;
+}
+
+.viz-label {
+  position: absolute;
+  z-index: 2;
+  transform: translate(8px, -120%);
+  padding: var(--nebula-spacing-1) var(--nebula-spacing-2);
+  border-radius: var(--nebula-spacing-1);
+  background: var(--nebula-component-tooltip-background);
+  color: var(--nebula-color-text-primary);
+  font-size: var(--nebula-typography-body-small-font-size);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.viz-fallback {
+  position: absolute;
+  inset: var(--nebula-spacing-4);
+  margin: 0;
+  color: var(--nebula-color-text-error);
+}
+
+.viz-side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nebula-spacing-3);
+  max-height: calc(100dvh - var(--prototype-app-header-max-block-size) - 12rem);
+  overflow: auto;
+}
+
+.viz-list,
+.selected-facts,
+.involve-list,
+.legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.viz-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nebula-spacing-1);
+}
+
+.viz-list-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--nebula-spacing-2);
+  padding: var(--nebula-spacing-2);
+  border: 1px solid transparent;
+  border-radius: var(--nebula-spacing-1);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.viz-list-button[aria-pressed="true"] {
+  background: var(--nebula-component-satellite-blue-cell-fill);
+  border-color: var(--nebula-component-satellite-blue-cell-border);
+}
+
+.viz-list-name,
+.viz-list-button .muted,
+.selected-facts span {
+  display: block;
+}
+
+.swatch {
+  inline-size: var(--nebula-spacing-3);
+  block-size: var(--nebula-spacing-3);
+  border-radius: var(--nebula-spacing-1);
+  flex: none;
+}
+
+.swatch--LEO { background: var(--nebula-color-data-visualization-blue-medium); }
+.swatch--MEO { background: var(--nebula-color-data-visualization-teal-medium); }
+.swatch--GEO { background: var(--nebula-color-data-visualization-yellow-medium); }
+.swatch--HEO { background: var(--nebula-color-data-visualization-purple-medium); }
+.swatch--debris { background: var(--nebula-component-satellite-red-icon); }
+
+.selected-facts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nebula-spacing-2);
+}
+
+.time-slider {
+  width: 100%;
+  accent-color: var(--nebula-color-action-application-default);
+}
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--nebula-spacing-4);
+}
+
+.chart-card {
+  margin: 0;
+  padding: var(--nebula-spacing-4);
+  background: var(--nebula-color-background-default);
+  border: var(--nebula-component-pane-application-border);
+  border-radius: var(--nebula-spacing-1);
+}
+
+.chart-card figcaption {
+  margin-bottom: var(--nebula-spacing-3);
+  font-weight: var(--nebula-typography-body-medium-bold-font-weight);
+}
+
+.donut-layout {
+  display: flex;
+  gap: var(--nebula-spacing-4);
+  align-items: center;
+}
+
+.donut-layout svg {
+  width: 7.5rem;
+  height: 7.5rem;
+  flex: none;
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nebula-spacing-1);
+  min-width: 0;
+}
+
+.legend li,
+.involve-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--nebula-spacing-2);
+  font-size: var(--nebula-typography-body-small-font-size);
+}
+
+.legend-swatch {
+  inline-size: var(--nebula-spacing-3);
+  block-size: var(--nebula-spacing-3);
+  border-radius: var(--nebula-spacing-1);
+  flex: none;
+}
+
+.bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nebula-spacing-2);
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr) auto;
+  gap: var(--nebula-spacing-2);
+  align-items: center;
+}
+
+.bar-label,
+.bar-value {
+  font-size: var(--nebula-typography-body-small-font-size);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bar-track,
+.range-track,
+.histogram-track {
+  background: var(--nebula-color-border-default);
+  border-radius: var(--nebula-spacing-1);
+  overflow: hidden;
+}
+
+.bar-track {
+  display: block;
+  block-size: var(--nebula-spacing-2);
+}
+
+.bar-fill {
+  display: block;
+  block-size: 100%;
+}
+
+.histogram {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: var(--nebula-spacing-1);
+  align-items: end;
+  min-height: 10rem;
+}
+
+.histogram-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--nebula-spacing-1);
+  min-width: 0;
+}
+
+.histogram-count,
+.histogram-label {
+  font-size: var(--nebula-typography-body-small-font-size);
+  color: var(--nebula-color-text-secondary);
+}
+
+.histogram-label {
+  text-align: center;
+  line-height: 1.1;
+}
+
+.histogram-track {
+  width: 100%;
+  height: 7rem;
+  display: flex;
+  align-items: flex-end;
+}
+
+.histogram-fill {
+  display: block;
+  width: 100%;
+  background: var(--nebula-color-data-visualization-blue-medium);
+}
+
+.range-track {
+  position: relative;
+  block-size: var(--nebula-spacing-2);
+  margin-block: var(--nebula-spacing-3);
+}
+
+.range-median,
+.range-value {
+  position: absolute;
+  top: 50%;
+  inline-size: var(--nebula-spacing-2);
+  block-size: var(--nebula-spacing-5);
+  transform: translate(-50%, -50%);
+}
+
+.range-median {
+  background: var(--nebula-color-text-secondary);
+}
+
+.range-value {
+  background: var(--nebula-color-action-application-default);
+}
+
+.range-scale {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--nebula-spacing-2);
+  color: var(--nebula-color-text-secondary);
+  font-size: var(--nebula-typography-body-small-font-size);
+}
+
+.range-readout {
+  margin: 0;
+  font-size: var(--nebula-typography-headline-extra-small-font-size);
+  font-weight: var(--nebula-typography-headline-extra-small-font-weight);
+  line-height: var(--nebula-typography-headline-extra-small-line-height);
+}
+
+.involve-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nebula-spacing-2);
+}
+
+.linkish {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--nebula-color-text-link);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.empty-panel p {
+  margin-top: 0;
+  color: var(--nebula-color-text-secondary);
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nebula-spacing-1);
+}
+
+.app-bar-selection__short {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .app-shell .app-bar {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: var(--nebula-spacing-2);
+  }
+
+  .app-bar-description {
+    display: none;
+  }
+
+  .app-bar-selection__full {
+    display: none;
+  }
+
+  .app-bar-selection__short {
+    display: inline;
+  }
+
+  .app-bar-selection__short::before {
+    content: attr(data-count);
+  }
+}
+
+@media (max-width: 960px) {
+  .split,
+  .viz-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .viz-stage,
+  .viz-side {
+    height: auto;
+    max-height: none;
+  }
+
+  .viz-stage {
+    height: 28rem;
+  }
+
+  .bar-row {
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+  }
+
+  .bar-value {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 560px) {
+  .portal-nav {
+    padding-inline: max(var(--nebula-spacing-3), env(safe-area-inset-left, 0px))
+      max(var(--nebula-spacing-3), env(safe-area-inset-right, 0px));
+  }
+}
